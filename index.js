@@ -1,11 +1,13 @@
 for (const btn of document.querySelectorAll(".drum")) {
   btn.addEventListener("click", function () {
     let btnInnerHTML = btn.innerHTML;
+    btnAnimate(btnInnerHTML);
 
     switch (btnInnerHTML) {
       case "w":
         let crashAudio = new Audio("sounds/crash.mp3");
         crashAudio.play();
+
         break;
 
       case "a":
@@ -39,4 +41,14 @@ for (const btn of document.querySelectorAll(".drum")) {
         break;
     }
   });
+}
+document.addEventListener("keydown", function (event) {
+  document.querySelector(`.${event.key}`).click();
+});
+
+function btnAnimate(buttonKey) {
+  document.querySelector(`.${buttonKey}`).classList.toggle("pressed");
+  setTimeout(function () {
+    document.querySelector(`.${buttonKey}`).classList.toggle("pressed");
+  }, 100);
 }
